@@ -4,7 +4,12 @@
       "Bash(gh:*)",
       "Bash(winget install:*)",
       "Bash(node -e ':*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(node:*)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(bash:*)",
+      "Bash(env)",
+      "Bash(rm:*)"
     ]
   }
 }

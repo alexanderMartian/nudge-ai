@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { motion } from "motion/react";
 
 const navLinks = ["Features", "Pricing", "Changelog"] as const;
 
@@ -10,7 +11,12 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="sticky top-0 z-50 border-b border-border bg-background"
+    >
       <nav
         aria-label="Main"
         className="max-w-[1200px] mx-auto px-5 h-[68px] flex items-center justify-between gap-6"
@@ -87,6 +93,6 @@ export default function Navbar() {
           ))}
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

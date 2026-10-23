@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FadeIn from "@/components/ui/FadeIn";
 
 const CheckIcon = () => (
   <svg
@@ -18,10 +19,10 @@ const CheckIcon = () => (
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="px-5 pt-10 pb-[104px]">
+    <section id="pricing" className="px-5 pt-10 pb-[104px] scroll-mt-[68px]">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="max-w-[640px] mx-auto mb-14 text-center">
+        <FadeIn className="max-w-[640px] mx-auto mb-14 text-center">
           <p className="mb-3 text-[13px] font-semibold tracking-[.08em] uppercase text-accent-light">
             Pricing
           </p>
@@ -31,12 +32,12 @@ export default function Pricing() {
           >
             Simple plans that grow with your team
           </h2>
-        </div>
+        </FadeIn>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {/* Free */}
-          <div className="p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-all duration-200 hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
+          <FadeIn delay={0} className="p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-all duration-200 hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
             <div>
               <h3 className="text-base font-semibold">Free</h3>
               <p className="mt-1.5 text-sm text-muted-foreground">For trying Nudge on your own.</p>
@@ -59,10 +60,11 @@ export default function Pricing() {
             >
               Get started
             </Link>
-          </div>
+          </FadeIn>
 
           {/* Pro — featured */}
-          <div
+          <FadeIn
+            delay={0.08}
             className="relative p-8 rounded-2xl bg-[#13111D] flex flex-col gap-6 shadow-[0_0_0_1px_rgba(124,58,237,.25),_0_24px_80px_-24px_rgba(124,58,237,.55)]"
             style={{ border: "1px solid #7C3AED" }}
           >
@@ -101,10 +103,10 @@ export default function Pricing() {
             >
               Join waitlist
             </Link>
-          </div>
+          </FadeIn>
 
           {/* Team */}
-          <div className="p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-all duration-200 hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
+          <FadeIn delay={0.16} className="p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-all duration-200 hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
             <div>
               <h3 className="text-base font-semibold">Team</h3>
               <p className="mt-1.5 text-sm text-muted-foreground">For teams that ship together.</p>
@@ -132,7 +134,7 @@ export default function Pricing() {
             >
               Contact sales
             </Link>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>

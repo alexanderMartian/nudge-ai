@@ -1,6 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 
 export default function Hero() {
+  const reduced = useReducedMotion();
+
+  const fadeUp = (delay: number) => ({
+    initial: { opacity: 0, y: reduced ? 0 : 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const },
+  });
+
   return (
     <section id="top" className="relative overflow-hidden px-5 pt-20 pb-10">
       {/* Background glow */}
@@ -15,49 +26,58 @@ export default function Hero() {
 
       <div className="relative max-w-[1200px] mx-auto flex flex-col items-center text-center">
         {/* Beta pill */}
-        <Link
-          href="#changelog"
-          className="inline-flex items-center gap-2 border border-border rounded-full bg-surface text-[13px] text-subtle"
-          style={{ padding: "6px 12px 6px 6px" }}
-        >
-          <span
-            className="px-2 py-0.5 rounded-full text-accent-lighter font-semibold text-[12px]"
-            style={{ background: "rgba(124,58,237,.18)" }}
+        <motion.div {...fadeUp(0.1)}>
+          <Link
+            href="#changelog"
+            className="inline-flex items-center gap-2 border border-border rounded-full bg-surface text-[13px] text-subtle"
+            style={{ padding: "6px 12px 6px 6px" }}
           >
-            Beta
-          </span>
-          <span>Now in private beta for Slack teams</span>
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </Link>
+            <span
+              className="px-2 py-0.5 rounded-full text-accent-lighter font-semibold text-[12px]"
+              style={{ background: "rgba(124,58,237,.18)" }}
+            >
+              Beta
+            </span>
+            <span>Now in private beta for Slack teams</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </Link>
+        </motion.div>
 
         {/* Headline */}
-        <h1 className="mt-7 max-w-[940px] font-bold tracking-[-0.035em] leading-[1.04]" style={{ fontSize: "clamp(40px, 7.4vw, 72px)" }}>
+        <motion.h1
+          {...fadeUp(0.2)}
+          className="mt-7 max-w-[940px] font-bold tracking-[-0.035em] leading-[1.04]"
+          style={{ fontSize: "clamp(40px, 7.4vw, 72px)" }}
+        >
           Your Slack is full of tasks.
           <br />
           <span className="text-accent-light">Nudge finds them.</span>
-        </h1>
+        </motion.h1>
 
         {/* Subtext */}
-        <p className="mt-6 max-w-[560px] text-base leading-relaxed text-muted-foreground">
+        <motion.p
+          {...fadeUp(0.3)}
+          className="mt-6 max-w-[560px] text-base leading-relaxed text-muted-foreground"
+        >
           Nudge AI reads the conversations your team already has, pulls out every
           request and promise, and turns them into tasks — so nothing gets lost
           in a thread.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
+        <motion.div {...fadeUp(0.4)} className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             href="#waitlist"
             className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold shadow-[0_0_24px_rgba(124,58,237,.35)] transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
@@ -84,10 +104,13 @@ export default function Hero() {
           >
             See how it works
           </Link>
-        </div>
+        </motion.div>
 
         {/* Inbox mockup */}
-        <div className="mt-[72px] w-full max-w-[1080px] border border-[#262638] rounded-2xl bg-surface-deep overflow-hidden text-left shadow-[0_0_0_1px_rgba(124,58,237,.12),_0_40px_120px_-30px_rgba(124,58,237,.45)]">
+        <motion.div
+          {...fadeUp(0.5)}
+          className="mt-[72px] w-full max-w-[1080px] border border-[#262638] rounded-2xl bg-surface-deep overflow-hidden text-left shadow-[0_0_0_1px_rgba(124,58,237,.12),_0_40px_120px_-30px_rgba(124,58,237,.45)]"
+        >
           {/* Mockup chrome */}
           <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border bg-surface">
             <div className="flex items-center gap-[10px] min-w-0">
@@ -224,7 +247,7 @@ export default function Hero() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

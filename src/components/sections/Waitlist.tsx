@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import FadeIn from "@/components/ui/FadeIn";
 
 const schema = z.object({
   email: z.string().email("Please enter a valid work email"),
@@ -38,7 +39,7 @@ export default function Waitlist() {
         }}
       />
 
-      <div className="relative max-w-[760px] mx-auto text-center flex flex-col items-center">
+      <FadeIn className="relative max-w-[760px] mx-auto text-center flex flex-col items-center">
         <h2
           className="font-bold tracking-[-0.035em] leading-[1.04]"
           style={{ fontSize: "clamp(36px, 6.4vw, 64px)" }}
@@ -92,7 +93,7 @@ export default function Waitlist() {
         <p className="mt-4 text-[13px] text-muted-foreground">
           No spam. Unsubscribe anytime.
         </p>
-      </div>
+      </FadeIn>
     </section>
   );
 }

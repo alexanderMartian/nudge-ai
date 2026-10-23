@@ -7,6 +7,10 @@ import { motion } from "motion/react";
 
 const navLinks = ["Features", "Pricing", "Changelog"] as const;
 
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -49,24 +53,26 @@ export default function Navbar() {
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-9 text-sm font-medium">
           {navLinks.map((label) => (
-            <Link
+            <a
               key={label}
               href={`#${label.toLowerCase()}`}
+              onClick={(e) => { e.preventDefault(); scrollTo(label.toLowerCase()); }}
               className="text-subtle hover:text-foreground transition-colors"
             >
               {label}
-            </Link>
+            </a>
           ))}
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <Link
+          <a
             href="#waitlist"
+            onClick={(e) => { e.preventDefault(); scrollTo("waitlist"); }}
             className="inline-flex items-center h-10 px-4 rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold whitespace-nowrap transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
           >
             Join waitlist
-          </Link>
+          </a>
           <button
             type="button"
             onClick={() => setOpen(!open)}
@@ -82,14 +88,14 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden fixed inset-x-0 top-[69px] z-40 border-t border-border bg-background px-5 py-4 flex flex-col gap-4 text-sm font-medium shadow-lg">
           {navLinks.map((label) => (
-            <Link
+            <a
               key={label}
               href={`#${label.toLowerCase()}`}
-              onClick={() => setOpen(false)}
+              onClick={(e) => { e.preventDefault(); scrollTo(label.toLowerCase()); setOpen(false); }}
               className="text-subtle hover:text-foreground transition-colors"
             >
               {label}
-            </Link>
+            </a>
           ))}
         </div>
       )}

@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(gh:*)",
-      "Bash(winget install:*)"
+      "Bash(winget install:*)",
+      "Bash(node -e ':*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }

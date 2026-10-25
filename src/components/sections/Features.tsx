@@ -1,3 +1,5 @@
+import FadeIn from "@/components/ui/FadeIn";
+
 const features = [
   {
     title: "Reads every channel",
@@ -62,11 +64,9 @@ const features = [
   },
 ] as const;
 
-import FadeIn from "@/components/ui/FadeIn";
-
 export default function Features() {
   return (
-    <section id="features" className="px-5 py-[104px]">
+    <section id="features" className="px-5 py-[104px] scroll-mt-20">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <FadeIn className="max-w-[640px] mx-auto mb-14 text-center">

@@ -19,7 +19,7 @@ const CheckIcon = () => (
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="px-5 pt-10 pb-[104px] scroll-mt-[68px]">
+    <section id="pricing" className="px-5 pt-10 pb-[104px] scroll-mt-20">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <FadeIn className="max-w-[640px] mx-auto mb-14 text-center">

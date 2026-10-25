@@ -27,7 +27,7 @@ export default function Waitlist() {
   return (
     <section
       id="waitlist"
-      className="relative px-5 py-[112px] border-y border-border bg-surface-deep overflow-hidden"
+      className="relative px-5 py-[112px] border-y border-border bg-surface-deep overflow-hidden scroll-mt-20"
     >
       {/* Glow */}
       <div

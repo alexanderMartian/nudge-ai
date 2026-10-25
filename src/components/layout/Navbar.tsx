@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 
 const navLinks = ["Features", "Pricing", "Changelog"] as const;
 
-function scrollTo(id: string) {
+function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -26,8 +25,8 @@ export default function Navbar() {
         className="max-w-[1200px] mx-auto px-5 h-[68px] flex items-center justify-between gap-6"
       >
         {/* Logo */}
-        <Link
-          href="#top"
+        <a
+          href="#"
           aria-label="Nudge AI home"
           className="flex items-center gap-[10px] font-semibold text-[17px] tracking-[-0.01em] text-foreground"
         >
@@ -48,7 +47,7 @@ export default function Navbar() {
             </svg>
           </span>
           <span>Nudge AI</span>
-        </Link>
+        </a>
 
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-9 text-sm font-medium">
@@ -56,7 +55,7 @@ export default function Navbar() {
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
-              onClick={(e) => { e.preventDefault(); scrollTo(label.toLowerCase()); }}
+              onClick={(e) => { e.preventDefault(); scrollToSection(label.toLowerCase()); }}
               className="text-subtle hover:text-foreground transition-colors"
             >
               {label}
@@ -68,14 +67,14 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="#waitlist"
-            onClick={(e) => { e.preventDefault(); scrollTo("waitlist"); }}
+            onClick={(e) => { e.preventDefault(); scrollToSection("waitlist"); }}
             className="inline-flex items-center h-10 px-4 rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold whitespace-nowrap transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
           >
             Join waitlist
           </a>
           <button
             type="button"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((prev) => !prev)}
             aria-label={open ? "Close menu" : "Open menu"}
             className="md:hidden w-11 h-11 inline-flex items-center justify-center bg-transparent border border-border rounded-[10px] text-foreground cursor-pointer"
           >
@@ -86,12 +85,12 @@ export default function Navbar() {
 
       {/* Mobile menu — fixed overlay, does not affect document flow */}
       {open && (
-        <div className="md:hidden fixed inset-x-0 top-[69px] z-40 border-t border-border bg-background px-5 py-4 flex flex-col gap-4 text-sm font-medium shadow-lg">
+        <div className="md:hidden fixed inset-x-0 top-[68px] z-40 border-t border-border bg-background px-5 py-4 flex flex-col gap-4 text-sm font-medium shadow-lg">
           {navLinks.map((label) => (
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
-              onClick={(e) => { e.preventDefault(); scrollTo(label.toLowerCase()); setOpen(false); }}
+              onClick={(e) => { e.preventDefault(); scrollToSection(label.toLowerCase()); setOpen(false); }}
               className="text-subtle hover:text-foreground transition-colors"
             >
               {label}

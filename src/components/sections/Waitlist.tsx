@@ -1,27 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import FadeIn from "@/components/ui/FadeIn";
-
-const schema = z.object({
-  email: z.string().email("Please enter a valid work email"),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { waitlistSchema, type WaitlistFormValues } from "@/lib/schemas";
 
 export default function Waitlist() {
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-    reset,
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  } = useForm<WaitlistFormValues>({ resolver: zodResolver(waitlistSchema) });
 
-  async function onSubmit(_data: FormValues) {
-    await new Promise<void>((resolve) => setTimeout(resolve, 600));
-    reset();
+  async function onSubmit(data: WaitlistFormValues) {
+    setSubmitError(null);
+    const res = await fetch("/api/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email }),
+    });
+    const json = await res.json();
+    if (!json.ok) {
+      setSubmitError(json.error ?? "Something went wrong. Please try again.");
+      throw new Error(json.error);
+    }
   }
 
   return (
@@ -62,6 +67,16 @@ export default function Waitlist() {
             className="mt-9 w-full max-w-[480px] flex flex-col sm:flex-row gap-[10px]"
             noValidate
           >
+            {/* Honeypot — hidden from real users, catches bots */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="hidden"
+              autoComplete="off"
+            />
+
             <div className="flex-1 min-w-0">
               <label className="sr-only" htmlFor="waitlist-email">
                 Work email
@@ -77,6 +92,11 @@ export default function Waitlist() {
               {errors.email && (
                 <p className="mt-1.5 text-[13px] text-destructive text-left">
                   {errors.email.message}
+                </p>
+              )}
+              {submitError && (
+                <p className="mt-1.5 text-[13px] text-destructive text-left">
+                  {submitError}
                 </p>
               )}
             </div>

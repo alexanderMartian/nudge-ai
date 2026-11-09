@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-bridge__list_files",
+      "mcp__figma-bridge__get_*",
+      "mcp__figma-bridge__save_screenshots",
+      "Bash(node scripts/section-check.mjs *)",
+      "Bash(node scripts/visual-check.mjs *)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(node scripts/lighthouse-summary.mjs *)",
+      "Bash(pnpm audit --prod)"
+    ],
+    "deny": [
+      "mcp__figma-bridge__set_*",
+      "mcp__figma-bridge__create_*",
+      "mcp__figma-bridge__delete_*",
+      "mcp__figma-bridge__duplicate_*",
+      "mcp__figma-bridge__import_*",
+      "mcp__figma-bridge__apply_*",
+      "mcp__figma-bridge__remove_*",
+      "mcp__figma-bridge__reparent_*",
+      "mcp__figma-bridge__group_*",
+      "mcp__figma-bridge__ungroup_*",
+      "mcp__figma-bridge__fit_*",
+      "mcp__figma-bridge__distribute_*",
+      "mcp__figma-bridge__align_*",
+      "mcp__figma-bridge__place_*",
+      "mcp__figma-bridge__run_script"
+    ]
+  }
+}

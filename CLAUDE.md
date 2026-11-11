@@ -58,6 +58,7 @@ next/image · next/font · Metadata API + sitemap + robots · Vercel · pnpm.
 - Images: always `next/image` with `width`/`height` or `fill` + `sizes`. Only the hero (LCP) image gets `loading="eager"` + `fetchPriority="high"` (`priority` is deprecated in Next 16).
 - Fonts: `next/font`, families as in the design, `display: "swap"`. An extra family gets its own token/utility; never swap `--font-sans` for one section.
 - Animations: added at the end with `/animate` — CSS first (tokens in `globals.css`, `data-reveal` + one `RevealObserver`, hover via Tailwind classes), the Motion library only for what CSS can't do (exit, layout, drag). Never animate the first screen on load; only transform/opacity; everything respects `prefers-reduced-motion`.
+- Animations: /animate standard package — tokens in `globals.css`, `<Reveal>` + `RevealObserver`, hover via tokens; first screen never animated.
 - Forms: one Zod schema in `src/lib/schemas.ts` → `zodResolver` on the client AND `safeParse` in the route handler. Add a honeypot field. Return `{ ok: boolean, error?: string }`.
 - Secrets only in env vars (`RESEND_API_KEY`, `NOTIFICATION_EMAIL`). Never `NEXT_PUBLIC_` for secrets. Keep `.env.example` updated.
 - SEO: `metadata` in `src/app/layout.tsx` with `metadataBase`, title template, description, `openGraph`; `src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/opengraph-image.(png|tsx)`. Exactly one `<h1>` per page; `<html lang>` set.

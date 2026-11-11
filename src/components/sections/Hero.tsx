@@ -1,17 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 
 export default function Hero() {
-  const reduced = useReducedMotion();
-
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: reduced ? 0 : 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const },
-  });
-
   return (
     <section id="top" className="relative overflow-hidden px-5 pt-20 pb-10">
       {/* Background glow */}
@@ -26,7 +15,7 @@ export default function Hero() {
 
       <div className="relative max-w-[1200px] mx-auto flex flex-col items-center text-center">
         {/* Beta pill */}
-        <motion.div {...fadeUp(0.1)}>
+        <div>
           <Link
             href="#changelog"
             className="inline-flex items-center gap-2 border border-border rounded-full bg-surface text-[13px] text-subtle"
@@ -53,34 +42,32 @@ export default function Hero() {
               <path d="M9 6l6 6-6 6" />
             </svg>
           </Link>
-        </motion.div>
+        </div>
 
         {/* Headline */}
-        <motion.h1
-          {...fadeUp(0.2)}
+        <h1
           className="mt-7 max-w-[940px] font-bold tracking-[-0.035em] leading-[1.04]"
           style={{ fontSize: "clamp(40px, 7.4vw, 72px)" }}
         >
           Your Slack is full of tasks.
           <br />
           <span className="text-accent-light">Nudge finds them.</span>
-        </motion.h1>
+        </h1>
 
         {/* Subtext */}
-        <motion.p
-          {...fadeUp(0.3)}
+        <p
           className="mt-6 max-w-[560px] text-base leading-relaxed text-muted-foreground"
         >
           Nudge AI reads the conversations your team already has, pulls out every
           request and promise, and turns them into tasks — so nothing gets lost
           in a thread.
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div {...fadeUp(0.4)} className="mt-9 flex flex-wrap justify-center gap-3">
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             href="#waitlist"
-            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold shadow-[0_0_24px_rgba(124,58,237,.35)] transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
+            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold shadow-[0_0_24px_rgba(124,58,237,.35)] transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
           >
             Join the waitlist
             <svg
@@ -100,15 +87,14 @@ export default function Hero() {
           </Link>
           <Link
             href="#features"
-            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl border border-border bg-surface text-foreground text-[15px] font-medium transition-all hover:border-[#3A3A55] hover:bg-surface-elevated"
+            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl border border-border bg-surface text-foreground text-[15px] font-medium transition-colors duration-(--motion-fast) ease-standard hover:border-[#3A3A55] hover:bg-surface-elevated"
           >
             See how it works
           </Link>
-        </motion.div>
+        </div>
 
         {/* Inbox mockup */}
-        <motion.div
-          {...fadeUp(0.5)}
+        <div
           className="mt-[72px] w-full max-w-[1080px] border border-[#262638] rounded-2xl bg-surface-deep overflow-hidden text-left shadow-[0_0_0_1px_rgba(124,58,237,.12),_0_40px_120px_-30px_rgba(124,58,237,.45)]"
         >
           {/* Mockup chrome */}
@@ -247,7 +233,7 @@ export default function Hero() {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

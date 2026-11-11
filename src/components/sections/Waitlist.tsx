@@ -1,4 +1,4 @@
-import FadeIn from "@/components/ui/FadeIn";
+import Reveal from "@/components/ui/Reveal";
 import WaitlistForm from "@/components/forms/WaitlistForm";
 
 export default function Waitlist() {
@@ -17,7 +17,7 @@ export default function Waitlist() {
         }}
       />
 
-      <FadeIn className="relative max-w-[760px] mx-auto text-center flex flex-col items-center">
+      <Reveal className="relative max-w-[760px] mx-auto text-center flex flex-col items-center">
         <h2
           className="font-bold tracking-[-0.035em] leading-[1.04]"
           style={{ fontSize: "clamp(36px, 6.4vw, 64px)" }}
@@ -35,7 +35,7 @@ export default function Waitlist() {
         <p className="mt-4 text-sm text-muted-foreground">
           No spam — we&apos;ll only email you when your invite is ready.
         </p>
-      </FadeIn>
+      </Reveal>
     </section>
   );
 }

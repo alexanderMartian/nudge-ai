@@ -1,7 +1,9 @@
+import Reveal from "@/components/ui/Reveal";
+
 export default function Customers() {
   return (
     <section aria-label="Customers" className="px-5 pt-14 pb-6">
-      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-7">
+      <Reveal className="max-w-[1200px] mx-auto flex flex-col items-center gap-7">
         <p className="text-sm text-muted-foreground">Trusted by teams at</p>
         <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-[#8B8F9A]">
           {/* Northwind */}
@@ -69,7 +71,7 @@ export default function Customers() {
             <span aria-hidden="true">Quanta</span>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

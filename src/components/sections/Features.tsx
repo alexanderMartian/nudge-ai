@@ -1,4 +1,4 @@
-import FadeIn from "@/components/ui/FadeIn";
+import Reveal from "@/components/ui/Reveal";
 
 const features = [
   {
@@ -69,7 +69,7 @@ export default function Features() {
     <section id="features" className="px-5 py-[104px] scroll-mt-20">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <FadeIn className="max-w-[640px] mx-auto mb-14 text-center">
+        <Reveal className="max-w-[640px] mx-auto mb-14 text-center">
           <p className="mb-3 text-[13px] font-semibold tracking-[.08em] uppercase text-accent-light">
             Features
           </p>
@@ -79,28 +79,26 @@ export default function Features() {
           >
             Everything your team said it would do, in one place
           </h2>
-        </FadeIn>
+        </Reveal>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((feature, i) => (
-            <FadeIn
-              key={feature.title}
-              delay={i * 0.08}
-              className="p-7 min-h-[200px] border border-border rounded-2xl bg-card flex flex-col justify-between gap-8 transition-all duration-200 hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]"
-            >
-              <span className="w-10 h-10 rounded-[10px] border border-[#2A2A3E] bg-surface-elevated text-accent-lighter inline-flex items-center justify-center">
-                {feature.icon}
-              </span>
-              <div>
-                <h3 className="mb-2 text-[18px] font-semibold tracking-[-0.01em]">
-                  {feature.title}
-                </h3>
-                <p className="text-[15px] leading-[1.5] text-muted-foreground">
-                  {feature.description}
-                </p>
+            <Reveal key={feature.title} index={i % 3} className="flex">
+              <div className="flex-1 p-7 min-h-[200px] border border-border rounded-2xl bg-card flex flex-col justify-between gap-8 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
+                <span className="w-10 h-10 rounded-[10px] border border-[#2A2A3E] bg-surface-elevated text-accent-lighter inline-flex items-center justify-center">
+                  {feature.icon}
+                </span>
+                <div>
+                  <h3 className="mb-2 text-[18px] font-semibold tracking-[-0.01em]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[15px] leading-[1.5] text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            </FadeIn>
+            </Reveal>
           ))}
         </div>
       </div>

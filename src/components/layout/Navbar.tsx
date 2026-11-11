@@ -1,25 +1,10 @@
-"use client";
-
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { motion } from "motion/react";
+import MobileMenu from "@/components/layout/MobileMenu";
 
 const navLinks = ["Features", "Pricing", "Changelog"] as const;
 
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
-
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 border-b border-border bg-background"
-    >
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
       <nav
         aria-label="Main"
         className="max-w-[1200px] mx-auto px-5 h-[68px] flex items-center justify-between gap-6"
@@ -55,8 +40,7 @@ export default function Navbar() {
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
-              onClick={(e) => { e.preventDefault(); scrollToSection(label.toLowerCase()); }}
-              className="text-subtle hover:text-foreground transition-colors"
+              className="text-subtle hover:text-foreground transition-colors duration-(--motion-fast) ease-standard"
             >
               {label}
             </a>
@@ -67,37 +51,13 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="#waitlist"
-            onClick={(e) => { e.preventDefault(); scrollToSection("waitlist"); }}
-            className="inline-flex items-center h-10 px-4 rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold whitespace-nowrap transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
+            className="inline-flex items-center h-10 px-4 rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold whitespace-nowrap transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
           >
             Join waitlist
           </a>
-          <button
-            type="button"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="md:hidden w-11 h-11 inline-flex items-center justify-center bg-transparent border border-border rounded-[10px] text-foreground cursor-pointer"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          <MobileMenu links={navLinks} />
         </div>
       </nav>
-
-      {/* Mobile menu — fixed overlay, does not affect document flow */}
-      {open && (
-        <div className="md:hidden fixed inset-x-0 top-[68px] z-40 border-t border-border bg-background px-5 py-4 flex flex-col gap-4 text-sm font-medium shadow-lg">
-          {navLinks.map((label) => (
-            <a
-              key={label}
-              href={`#${label.toLowerCase()}`}
-              onClick={(e) => { e.preventDefault(); scrollToSection(label.toLowerCase()); setOpen(false); }}
-              className="text-subtle hover:text-foreground transition-colors"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      )}
-    </motion.header>
+    </header>
   );
 }

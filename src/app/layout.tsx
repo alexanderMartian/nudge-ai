@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Providers from "@/components/layout/Providers";
+import RevealObserver from "@/components/ui/RevealObserver";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,7 +69,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} motion-safe:scroll-smooth`}
+      data-scroll-behavior="smooth"
     >
       <body className="bg-background text-foreground antialiased overflow-x-hidden" suppressHydrationWarning>
         <script
@@ -78,11 +79,10 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
-        <Providers>
-          <Navbar />
-          {children}
-          <Footer />
-        </Providers>
+        <Navbar />
+        {children}
+        <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

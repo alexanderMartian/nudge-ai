@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealObserver from "@/components/ui/RevealObserver";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const SITE_URL = "https://nudge-ai-lac.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,21 +33,12 @@ export const metadata: Metadata = {
     title: "Nudge AI — Turn Slack conversations into tasks",
     description:
       "Nudge AI reads your team's Slack conversations, extracts every request and promise, and turns them into tasks — so nothing gets lost in a thread.",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Nudge AI — Turn Slack conversations into tasks",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nudge AI — Turn Slack conversations into tasks",
     description:
       "Nudge AI reads your team's Slack conversations, extracts every request and promise, and turns them into tasks — so nothing gets lost in a thread.",
-    images: [{ url: "/opengraph-image.png", alt: "Nudge AI — Turn Slack conversations into tasks" }],
   },
 };
 
@@ -72,7 +62,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} motion-safe:scroll-smooth`}
       data-scroll-behavior="smooth"
     >
-      <body className="bg-background text-foreground antialiased overflow-x-hidden" suppressHydrationWarning>
+      <body className="bg-background text-foreground antialiased overflow-x-clip" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

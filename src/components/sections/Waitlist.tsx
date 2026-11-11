@@ -10,11 +10,7 @@ export default function Waitlist() {
       {/* Glow */}
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-1/2 w-[760px] max-w-[140%] h-[380px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(124,58,237,.22), rgba(124,58,237,0) 65%)",
-        }}
+        className="absolute left-1/2 top-1/2 w-[760px] max-w-[140%] h-[380px] -translate-x-1/2 -translate-y-1/2 pointer-events-none bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--primary)_22%,transparent),transparent_65%)]"
       />
 
       <Reveal className="relative max-w-[760px] mx-auto text-center flex flex-col items-center">

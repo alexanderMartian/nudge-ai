@@ -6,25 +6,18 @@ export default function Hero() {
       {/* Background glow */}
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-[380px] w-[900px] max-w-[120%] h-[520px] -translate-x-1/2 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(124,58,237,.28), rgba(124,58,237,0) 65%)",
-        }}
+        className="absolute left-1/2 top-[380px] w-[900px] max-w-[120%] h-[520px] -translate-x-1/2 pointer-events-none bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--primary)_28%,transparent),transparent_65%)]"
       />
 
       <div className="relative max-w-[1200px] mx-auto flex flex-col items-center text-center">
         {/* Beta pill */}
         <div>
           <Link
-            href="#changelog"
+            href="#waitlist"
             className="inline-flex items-center gap-2 border border-border rounded-full bg-surface text-[13px] text-subtle"
             style={{ padding: "6px 12px 6px 6px" }}
           >
-            <span
-              className="px-2 py-0.5 rounded-full text-accent-lighter font-semibold text-[12px]"
-              style={{ background: "rgba(124,58,237,.18)" }}
-            >
+            <span className="px-2 py-0.5 rounded-full bg-primary/18 text-accent-lighter font-semibold text-[12px]">
               Beta
             </span>
             <span>Now in private beta for Slack teams</span>
@@ -67,7 +60,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             href="#waitlist"
-            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold shadow-[0_0_24px_rgba(124,58,237,.35)] transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)]"
+            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold shadow-glow-cta transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-glow-hover"
           >
             Join the waitlist
             <svg
@@ -87,7 +80,7 @@ export default function Hero() {
           </Link>
           <Link
             href="#features"
-            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl border border-border bg-surface text-foreground text-[15px] font-medium transition-colors duration-(--motion-fast) ease-standard hover:border-[#3A3A55] hover:bg-surface-elevated"
+            className="inline-flex items-center gap-2 h-12 px-[22px] rounded-xl border border-border bg-surface text-foreground text-[15px] font-medium transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-elevated"
           >
             See how it works
           </Link>
@@ -95,18 +88,18 @@ export default function Hero() {
 
         {/* Inbox mockup */}
         <div
-          className="mt-[72px] w-full max-w-[1080px] border border-[#262638] rounded-2xl bg-surface-deep overflow-hidden text-left shadow-[0_0_0_1px_rgba(124,58,237,.12),_0_40px_120px_-30px_rgba(124,58,237,.45)]"
+          className="mt-[72px] w-full max-w-[1080px] border border-border-mockup rounded-2xl bg-surface-deep overflow-hidden text-left shadow-mockup"
         >
           {/* Mockup chrome */}
           <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border bg-surface">
             <div className="flex items-center gap-[10px] min-w-0">
-              <span className="w-5 h-5 shrink-0 rounded-md bg-primary inline-flex items-center justify-center">
+              <span className="w-5 h-5 shrink-0 rounded-md bg-primary text-primary-foreground inline-flex items-center justify-center">
                 <svg
                   width="12"
                   height="12"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#FFFFFF"
+                  stroke="currentColor"
                   strokeWidth="2.6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -198,10 +191,7 @@ export default function Hero() {
               </div>
 
               {/* Highlighted task */}
-              <div
-                className="p-[14px] rounded-xl bg-surface flex flex-col gap-[10px] shadow-[0_0_30px_-10px_rgba(124,58,237,.6)]"
-                style={{ border: "1px solid rgba(124,58,237,.5)" }}
-              >
+              <div className="p-[14px] border border-primary/50 rounded-xl bg-surface flex flex-col gap-[10px] shadow-note">
                 <div className="flex items-start gap-[10px]">
                   <span className="w-[18px] h-[18px] shrink-0 mt-px border border-checkbox-border rounded-md" />
                   <span className="text-sm font-medium leading-[1.4]">
@@ -210,7 +200,7 @@ export default function Hero() {
                 </div>
                 <div className="flex flex-wrap gap-1.5 pl-7 text-[12px]">
                   <span className="px-2 py-[3px] rounded-md bg-tag-bg text-dim">@Sam</span>
-                  <span className="px-2 py-[3px] rounded-md text-warn-text" style={{ background: "rgba(251,146,60,.14)" }}>Due Thu</span>
+                  <span className="px-2 py-[3px] rounded-md bg-warn/14 text-warn-text">Due Thu</span>
                   <span className="px-2 py-[3px] rounded-md bg-tag-bg text-subtle">#launch-q4</span>
                 </div>
               </div>
@@ -256,7 +246,7 @@ function MockMessage({
 }) {
   return (
     <div className="p-[14px] border border-border rounded-xl bg-surface flex gap-3">
-      <span className="w-8 h-8 shrink-0 rounded-lg bg-avatar-bg text-[#E5E7EB] text-[12px] font-semibold inline-flex items-center justify-center">
+      <span className="w-8 h-8 shrink-0 rounded-lg bg-avatar-bg text-avatar-foreground text-[12px] font-semibold inline-flex items-center justify-center">
         {initials}
       </span>
       <div className="min-w-0">
@@ -267,8 +257,7 @@ function MockMessage({
         <p className="mt-1 text-sm leading-[1.5] text-dim">
           {before}
           <span
-            className="text-foreground border-b border-accent-light px-0.5"
-            style={{ background: "rgba(124,58,237,.22)" }}
+            className="bg-primary/22 text-foreground border-b border-accent-light px-0.5"
           >
             {highlight}
           </span>

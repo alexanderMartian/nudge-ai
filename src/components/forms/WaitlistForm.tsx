@@ -79,7 +79,7 @@ export default function WaitlistForm() {
               autoComplete="email"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "waitlist-email-error" : undefined}
-              className="w-full h-[50px] px-4 border border-border rounded-xl bg-surface text-foreground text-[15px] placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(124,58,237,.25)] transition-[border-color,box-shadow]"
+              className="w-full h-[50px] px-4 border border-border rounded-xl bg-surface text-foreground text-[15px] placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-focus-ring transition-[border-color,box-shadow]"
               {...register("email")}
             />
             {errors.email && (
@@ -100,7 +100,7 @@ export default function WaitlistForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="h-[50px] px-[22px] border-0 rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold cursor-pointer whitespace-nowrap transition-[filter,box-shadow] hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="h-[50px] px-[22px] border-0 rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold cursor-pointer whitespace-nowrap transition-[filter,box-shadow] hover:brightness-[1.08] hover:shadow-glow-hover disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Joining…" : "Join waitlist"}
           </button>

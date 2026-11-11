@@ -3,11 +3,12 @@ import Reveal from "@/components/ui/Reveal";
 
 const CheckIcon = () => (
   <svg
+    className="text-accent-light"
     width="16"
     height="16"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#A78BFA"
+    stroke="currentColor"
     strokeWidth="2.4"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -38,7 +39,7 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {/* Free */}
           <Reveal index={0} className="flex">
-            <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
+            <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-primary/55 hover:shadow-card-hover">
               <div>
                 <h3 className="text-base font-semibold">Free</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">For trying Nudge on your own.</p>
@@ -57,7 +58,7 @@ export default function Pricing() {
               </ul>
               <Link
                 href="#waitlist"
-                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-[#3A3A55] hover:bg-[#1A1A27]"
+                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
               >
                 Get started
               </Link>
@@ -66,19 +67,13 @@ export default function Pricing() {
 
           {/* Pro — featured */}
           <Reveal index={1} className="flex">
-            <div
-              className="flex-1 relative p-8 rounded-2xl bg-[#13111D] flex flex-col gap-6 shadow-[0_0_0_1px_rgba(124,58,237,.25),_0_24px_80px_-24px_rgba(124,58,237,.55)]"
-              style={{ border: "1px solid #7C3AED" }}
-            >
+            <div className="flex-1 relative p-8 border border-primary rounded-2xl bg-surface-featured flex flex-col gap-6 shadow-featured">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h3 className="text-base font-semibold">Pro</h3>
                   <p className="mt-1.5 text-sm text-muted-foreground">For people who live in Slack.</p>
                 </div>
-                <span
-                  className="px-[10px] py-1 rounded-full text-accent-lighter text-[12px] font-semibold whitespace-nowrap"
-                  style={{ background: "rgba(124,58,237,.2)" }}
-                >
+                <span className="px-[10px] py-1 rounded-full bg-primary/20 text-accent-lighter text-[12px] font-semibold whitespace-nowrap">
                   Most popular
                 </span>
               </div>
@@ -101,7 +96,7 @@ export default function Pricing() {
               </ul>
               <Link
                 href="#waitlist"
-                className="flex items-center justify-center h-[46px] rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-[0_0_24px_rgba(124,58,237,.45)]"
+                className="flex items-center justify-center h-[46px] rounded-[10px] bg-primary text-primary-foreground text-sm font-semibold transition-[filter,box-shadow] duration-(--motion-fast) ease-standard hover:brightness-[1.08] hover:shadow-glow-hover-sm"
               >
                 Join waitlist
               </Link>
@@ -110,7 +105,7 @@ export default function Pricing() {
 
           {/* Team */}
           <Reveal index={2} className="flex">
-            <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-[rgba(124,58,237,0.55)] hover:shadow-[0_0_0_1px_rgba(124,58,237,.18),_0_0_48px_-12px_rgba(124,58,237,.55)]">
+            <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-primary/55 hover:shadow-card-hover">
               <div>
                 <h3 className="text-base font-semibold">Team</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">For teams that ship together.</p>
@@ -134,7 +129,7 @@ export default function Pricing() {
               </ul>
               <Link
                 href="#waitlist"
-                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-[#3A3A55] hover:bg-[#1A1A27]"
+                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
               >
                 Contact sales
               </Link>

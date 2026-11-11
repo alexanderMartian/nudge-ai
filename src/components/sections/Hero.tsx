@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-5 pt-20 pb-10">
+    <section id="top" className="relative overflow-clip px-5 pt-20 pb-10">
       {/* Background glow */}
       <div
         aria-hidden="true"

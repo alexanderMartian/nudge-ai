@@ -55,7 +55,7 @@ export default function WaitlistForm() {
       {!sent && (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-9 w-full max-w-[480px] flex flex-col sm:flex-row gap-[10px]"
+          className="relative mt-9 w-full max-w-[480px] flex flex-col sm:flex-row gap-[10px]"
           noValidate
         >
           {/* Honeypot — off-screen (not display:none, which many bots skip) */}

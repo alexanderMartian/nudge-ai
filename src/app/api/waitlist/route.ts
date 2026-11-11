@@ -3,9 +3,14 @@ import { Resend } from "resend";
 import { waitlistSchema } from "@/lib/schemas";
 
 export async function POST(req: NextRequest) {
+  const raw = await req.text();
+  if (raw.length > 1024) {
+    return NextResponse.json({ ok: false, error: "Request too large" }, { status: 413 });
+  }
+
   let body: unknown;
   try {
-    body = await req.json();
+    body = JSON.parse(raw);
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
   }

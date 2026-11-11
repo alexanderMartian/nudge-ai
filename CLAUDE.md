@@ -75,6 +75,9 @@ next/image · next/font · Metadata API + sitemap + robots · Vercel · pnpm.
 - 2026-11-11: 12–13px text in badges (Beta, Most popular), eyebrow labels and the Inbox mockup is kept as in the design; section-check's "text < 14px" there is expected. The beta pill text is `text-sm` (14px).
 - 2026-11-11: the Beta pill tap target is extended to 44px with an `::after` hit area; section-check measures the box only, so it still reports 36px on mobile.
 - 2026-11-11: radii use the default Tailwind scale (md 6 / lg 8 / xl 12 / 2xl 16, as in the design); the shadcn `--radius-*` overrides and `--radius` were removed from `globals.css`. Design text with `line-height: normal` uses `leading-[normal]`.
+- 2026-11-11: no robots/noindex logic per environment: Vercel adds `X-Robots-Tag: noindex` to preview deployments itself, and there is no custom domain on a branch.
+- 2026-11-11: `cn` comes from the `cn` package (merges conflicting Tailwind classes, replaces clsx + tailwind-merge) — keep it. No `global-error.tsx`.
+- 2026-11-11: no rate limit on `/api/waitlist` (portfolio project, Resend test sender); only honeypot, 1024-char body cap (413) and `email.max(254)`.
 - 2026-11-09: waitlist sends from onboarding@resend.dev (Resend test sender: delivers only to the Resend account owner's email); without env vars the form returns 503 by design.
 
 ## Definition of Done

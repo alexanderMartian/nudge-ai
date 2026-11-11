@@ -47,6 +47,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Nudge AI",
   url: SITE_URL,
+  logo: `${SITE_URL}/apple-icon.png`,
   description:
     "Nudge AI reads your team's Slack conversations, extracts every request and promise, and turns them into tasks — so nothing gets lost in a thread.",
 };

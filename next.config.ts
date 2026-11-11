@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Next 16 opt-ins: cacheComponents enables Partial Prerendering / `use cache`;
+  // partialPrefetching prefetches the static shell of linked routes.
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,

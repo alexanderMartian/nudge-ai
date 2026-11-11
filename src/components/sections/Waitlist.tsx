@@ -1,34 +1,7 @@
-"use client";
-
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import FadeIn from "@/components/ui/FadeIn";
-import { waitlistSchema, type WaitlistFormValues } from "@/lib/schemas";
+import WaitlistForm from "@/components/forms/WaitlistForm";
 
 export default function Waitlist() {
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
-  } = useForm<WaitlistFormValues>({ resolver: zodResolver(waitlistSchema) });
-
-  async function onSubmit(data: WaitlistFormValues) {
-    setSubmitError(null);
-    const res = await fetch("/api/waitlist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: data.email }),
-    });
-    const json = await res.json();
-    if (!json.ok) {
-      setSubmitError(json.error ?? "Something went wrong. Please try again.");
-      throw new Error(json.error);
-    }
-  }
-
   return (
     <section
       id="waitlist"
@@ -57,61 +30,10 @@ export default function Waitlist() {
           Join the waitlist and we&apos;ll invite your team as soon as a spot opens.
         </p>
 
-        {isSubmitSuccessful ? (
-          <p className="mt-9 text-[15px] font-medium text-accent-light">
-            You&apos;re on the list — we&apos;ll be in touch soon!
-          </p>
-        ) : (
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="mt-9 w-full max-w-[480px] flex flex-col sm:flex-row gap-[10px]"
-            noValidate
-          >
-            {/* Honeypot — hidden from real users, catches bots */}
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              aria-hidden="true"
-              className="hidden"
-              autoComplete="off"
-            />
+        <WaitlistForm />
 
-            <div className="flex-1 min-w-0">
-              <label className="sr-only" htmlFor="waitlist-email">
-                Work email
-              </label>
-              <input
-                id="waitlist-email"
-                type="email"
-                placeholder="you@company.com"
-                autoComplete="email"
-                className="w-full h-[50px] px-4 border border-border rounded-xl bg-surface text-foreground text-[15px] placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(124,58,237,.25)] transition-all"
-                {...register("email")}
-              />
-              {errors.email && (
-                <p className="mt-1.5 text-[13px] text-destructive text-left">
-                  {errors.email.message}
-                </p>
-              )}
-              {submitError && (
-                <p className="mt-1.5 text-[13px] text-destructive text-left">
-                  {submitError}
-                </p>
-              )}
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="h-[50px] px-[22px] border-0 rounded-xl bg-primary text-primary-foreground text-[15px] font-semibold cursor-pointer whitespace-nowrap transition-all hover:brightness-[1.08] hover:shadow-[0_0_28px_rgba(124,58,237,0.55)] disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Joining…" : "Join waitlist"}
-            </button>
-          </form>
-        )}
-
-        <p className="mt-4 text-[13px] text-muted-foreground">
-          No spam. Unsubscribe anytime.
+        <p className="mt-4 text-sm text-muted-foreground">
+          No spam — we&apos;ll only email you when your invite is ready.
         </p>
       </FadeIn>
     </section>

@@ -69,6 +69,7 @@ next/image · next/font · Metadata API + sitemap + robots · Vercel · pnpm.
 <!-- Deliberate choices with a date, one line each (accepted Lighthouse score, placeholder links, skipped features…).
      Reviewers and agents read this and must not report these as problems. -->
 - 2026-11-09: portfolio project — customer logos, pricing and product copy are samples, not real claims.
+- 2026-11-09: waitlist sends from onboarding@resend.dev (Resend test sender: delivers only to the Resend account owner's email); without env vars the form returns 503 by design.
 
 ## Definition of Done
 1. Section/feature done → `pnpm lint` and `pnpm typecheck` pass.

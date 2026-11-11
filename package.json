@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "prod": "next build && next start -p 3001",
     "qa:visual": "node scripts/visual-check.mjs http://localhost:3000",
-    "qa:lh": "node scripts/lighthouse-summary.mjs http://localhost:3000"
+    "qa:lh": "node scripts/lighthouse-summary.mjs http://localhost:3001 --runs 3"
   },
   "dependencies": {
     "@hookform/resolvers": "^6.0.0",

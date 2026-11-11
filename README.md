@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nudge AI — landing page
 
-## Getting Started
+A fictional SaaS that turns Slack conversations into tasks. Portfolio project, not a real product.
 
-First, run the development server:
+**Live:** https://nudge-ai-lac.vercel.app
+
+![Nudge AI first screen at 1440 px](docs/preview.png)
+
+## Results
+
+PageSpeed Insights: <!-- PSI: fill after deploy -->
+
+## Design
+
+My own design, created in Claude Design (claude.ai), inspired by modern AI/SaaS landing pages. Implemented from the saved HTML design (`design/reference.html`, not in the repo). Customer logos, prices and product copy are samples, not real claims.
+
+## What's inside
+
+- Responsive from 360 to 2560 px
+- Waitlist form: React Hook Form + Zod (one schema for client and server), Route Handler + Resend, honeypot field, request size limit, 400/413/502/503 responses, accessible errors and status
+- First screen without animation (fast LCP); CSS reveal-on-scroll with one IntersectionObserver; respects `prefers-reduced-motion`; no animation library
+- Accessibility: semantic sections, keyboard-friendly mobile menu (`aria-expanded`, Escape), 44 px tap targets, WCAG AA contrast
+- SEO: Metadata API, Open Graph image, icons, sitemap, robots, JSON-LD
+- Security headers (CSP `frame-ancestors`, `nosniff`, Referrer-Policy, Permissions-Policy, COOP), no `X-Powered-By`
+
+## Stack
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Zod 4, React Hook Form, Resend, Vercel, pnpm.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local   # then fill RESEND_API_KEY and NOTIFICATION_EMAIL
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without the env vars the waitlist form answers 503 by design. The site runs at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | What it does |
+|---|---|
+| `pnpm dev` | Dev server on port 3000 |
+| `pnpm build` | Production build |
+| `pnpm prod` | Build + production server on port 3001 |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | TypeScript check, no emit |
+| `pnpm qa:visual` | Screenshots + layout checks (dev server must run) |
+| `pnpm qa:lh` | Lighthouse summary, 3 runs, against `pnpm prod` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+Vercel. Add `RESEND_API_KEY` and `NOTIFICATION_EMAIL` as Sensitive environment variables for Production and Preview. Node 26.x (`engines` in `package.json`).
 
-To learn more about Next.js, take a look at the following resources:
+## Credits
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Fonts: Geist (SIL Open Font License), loaded via `next/font`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Design and development: Oleksandr Martian.

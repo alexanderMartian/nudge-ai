@@ -8,7 +8,8 @@
 // Every width (360 768 1024 1440 1920): console errors, next/image warnings, page errors, failed requests / HTTP ≥ 400 (dev-server noise
 // filtered), broken images, <img> without alt, number of <h1>, horizontal overflow, blocks stuck at opacity 0.
 // Once per page: in-page anchor links (#id) that point nowhere, href="#" placeholders (info), mobile menu
-// (360: open → links visible → link closes it; Escape closes it), keyboard walk with Tab (1440: visible focus on
+// (360, dialog or aria-controls disclosure: open → links visible → Escape closes it and focus returns to the button →
+// link closes it), keyboard walk with Tab (1440: visible focus on
 // every stop, no focus on hidden elements).
 // Motion (every width): first-screen elements that fade in or move on load (delays LCP — the first screen must not
 // animate), animations of layout properties (width/height/top/margin… — jank and CLS), elements still invisible after
@@ -279,8 +280,33 @@ const LABEL = () => {
 };
 
 // ---------- mobile menu ----------
+// The menu can be a dialog (role=dialog / aria-modal — shadcn Sheet, Radix) or a disclosure: the button has
+// aria-expanded + aria-controls="<id>" and shows that element (W3C APG disclosure pattern — a plain list of anchors).
+// The panel is found by the button's aria-controls first, then by dialog markup.
+const MENU_HELPERS = () => {
+  window.__menuPanel = () => {
+    const btn = document.querySelector("[data-qa-menu]");
+    const linksIn = (d) => [...d.querySelectorAll("a[href]")].filter(window.__shown).length;
+    const byLinks = (x, y) => linksIn(y) - linksIn(x);
+    const ids = (btn?.getAttribute("aria-controls") || "").split(/\s+/).filter(Boolean);
+    const controlled = ids.map((id) => document.getElementById(id)).filter((d) => d && window.__shown(d));
+    if (controlled.length) return controlled.sort(byLinks)[0];
+    // Prefer the dialog itself over overlays (Radix renders an overlay with data-state=open before the content).
+    const dialogs = [...document.querySelectorAll("[role=dialog], [aria-modal=true]")].filter(window.__shown);
+    const fallback = [...document.querySelectorAll("[data-state=open]")].filter((d) => window.__shown(d) && d !== btn);
+    return (dialogs.length ? dialogs : fallback).sort(byLinks)[0] || null;
+  };
+  // Is the panel found when the menu was opened still visible? Checked by its marker, so an unrelated dialog
+  // (cookie banner) doesn't count; a panel removed from the DOM on close counts as closed.
+  window.__menuOpen = () => {
+    const panel = document.querySelector("[data-qa-menu-panel]");
+    return !!panel && window.__shown(panel);
+  };
+};
+
 async function checkMenu(page) {
   await page.evaluate(LABEL);
+  await page.evaluate(MENU_HELPERS);
   const found = await page.evaluate(() => {
     const header = document.querySelector("header") || document.body;
     const btn = [...header.querySelectorAll("button, [role=button]")].find(
@@ -293,37 +319,56 @@ async function checkMenu(page) {
   if (!found.button) return found.visibleLinks ? [] : ["mobile menu: no menu button and no visible nav links in <header> at 360"];
   const issues = [];
   const btn = page.locator("[data-qa-menu]");
-  await btn.click({ timeout: 3000 });
-  await page.waitForTimeout(900); // open animation
-  const open = await page.evaluate(() => {
-    // Prefer the dialog itself over overlays (Radix renders an overlay with data-state=open before the content).
-    const linksIn = (d) => [...d.querySelectorAll("a[href]")].filter(window.__shown).length;
-    const cands = [...document.querySelectorAll("[role=dialog], [aria-modal=true]")].filter(window.__shown);
-    const fallback = [...document.querySelectorAll("[data-state=open]")].filter((d) => window.__shown(d) && d !== document.querySelector("[data-qa-menu]"));
-    const dlg = (cands.length ? cands : fallback).sort((x, y) => linksIn(y) - linksIn(x))[0];
-    const links = dlg ? [...dlg.querySelectorAll("a[href]")].filter(window.__shown) : [];
-    if (links[0]) links[0].setAttribute("data-qa-menu-link", "1");
-    return { dialog: !!dlg, links: links.length, expanded: document.querySelector("[data-qa-menu]")?.getAttribute("aria-expanded") };
-  });
-  if (!open.dialog) return [`mobile menu: ${found.label} doesn't open a visible menu (no role=dialog / data-state=open)`];
-  if (!open.links) issues.push("mobile menu: opened, but has no visible links");
-  if (open.expanded === "false") issues.push("mobile menu: aria-expanded stays false when open");
+  const open = async () => {
+    await btn.click({ timeout: 3000 });
+    await page.waitForTimeout(900); // open animation
+    return page.evaluate(() => {
+      document.querySelector("[data-qa-menu-panel]")?.removeAttribute("data-qa-menu-panel");
+      const panel = window.__menuPanel();
+      if (!panel) return null;
+      panel.setAttribute("data-qa-menu-panel", "1");
+      const links = [...panel.querySelectorAll("a[href]")].filter(window.__shown);
+      document.querySelector("[data-qa-menu-link]")?.removeAttribute("data-qa-menu-link");
+      if (links[0]) links[0].setAttribute("data-qa-menu-link", "1");
+      return { links: links.length, expanded: document.querySelector("[data-qa-menu]").getAttribute("aria-expanded") };
+    });
+  };
+
+  const opened = await open();
+  if (!opened) return [`mobile menu: ${found.label} doesn't open a visible menu (no visible aria-controls target, role=dialog or data-state=open)`];
+  if (!opened.links) issues.push("mobile menu: opened, but has no visible links");
+  if (opened.expanded === "false") issues.push("mobile menu: aria-expanded stays false when open");
+
+  // Escape with focus inside the menu: the menu closes and focus goes back to the button (not lost to <body>).
+  await page.evaluate(() => document.querySelector("[data-qa-menu-link]")?.focus());
   await page.keyboard.press("Escape");
   await page.waitForTimeout(700);
-  const afterEsc = await page.evaluate(() => !![...document.querySelectorAll("[role=dialog], [aria-modal=true]")].find(window.__shown));
-  if (afterEsc) {
+  const esc = await page.evaluate(() => {
+    const b = document.querySelector("[data-qa-menu]");
+    const a = document.activeElement;
+    return {
+      stillOpen: window.__menuOpen(),
+      focusLost: !a || a === document.body || a === document.documentElement,
+      focusOnButton: !!a && b.contains(a),
+      expanded: b.getAttribute("aria-expanded"),
+    };
+  });
+  if (esc.stillOpen) {
     issues.push("mobile menu: Escape doesn't close it");
     return issues; // can't reopen reliably — skip the link test
   }
-  if (open.links) {
-    await btn.click({ timeout: 3000 });
-    await page.waitForTimeout(900);
+  if (opened.links && !esc.focusOnButton) {
+    issues.push(`mobile menu: after Escape focus ${esc.focusLost ? "is lost (on <body>)" : "doesn't return to the menu button"} — move it back to the button`);
+  }
+  if (esc.expanded === "true") issues.push("mobile menu: aria-expanded stays true after closing");
+
+  if (opened.links) {
+    const again = await open();
     const link = page.locator("[data-qa-menu-link]");
-    if (await link.count()) {
+    if (again && (await link.count())) {
       await link.first().click({ timeout: 3000 });
       await page.waitForTimeout(600);
-      const stillOpen = await page.evaluate(() => !![...document.querySelectorAll("[role=dialog], [aria-modal=true]")].find(window.__shown));
-      if (stillOpen) issues.push("mobile menu: stays open after clicking a link (anchor links should close it)");
+      if (await page.evaluate(() => window.__menuOpen())) issues.push("mobile menu: stays open after clicking a link (anchor links should close it)");
     }
   }
   return issues;

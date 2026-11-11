@@ -28,7 +28,7 @@ export default function Waitlist() {
 
         <WaitlistForm />
 
-        <p className="mt-4 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm leading-[normal] text-muted-foreground">
           No spam — we&apos;ll only email you when your invite is ready.
         </p>
       </Reveal>

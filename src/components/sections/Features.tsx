@@ -86,11 +86,11 @@ export default function Features() {
           {features.map((feature, i) => (
             <Reveal key={feature.title} index={i % 3} className="flex">
               <div className="flex-1 p-7 min-h-[200px] border border-border rounded-2xl bg-card flex flex-col justify-between gap-8 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-primary/55 hover:shadow-card-hover">
-                <span className="w-10 h-10 rounded-[10px] border border-border-strong bg-surface-elevated text-accent-lighter inline-flex items-center justify-center">
+                <span className="w-[42px] h-[42px] rounded-[10px] border border-border-strong bg-surface-elevated text-accent-lighter inline-flex items-center justify-center">
                   {feature.icon}
                 </span>
                 <div>
-                  <h3 className="mb-2 text-[18px] font-semibold tracking-[-0.01em]">
+                  <h3 className="mb-2 text-[18px] font-semibold leading-[normal] tracking-[-0.01em]">
                     {feature.title}
                   </h3>
                   <p className="text-[15px] leading-[1.5] text-muted-foreground">

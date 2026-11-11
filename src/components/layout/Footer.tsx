@@ -51,8 +51,8 @@ export default function Footer() {
 
           {columns.map(({ title, links }) => (
             <div key={title}>
-              <h3 className="mb-4 text-[13px] font-semibold text-foreground">{title}</h3>
-              <ul className="flex flex-col gap-3 text-sm">
+              <h3 className="mb-4 text-[13px] font-semibold leading-[normal] text-foreground">{title}</h3>
+              <ul className="flex flex-col gap-3 text-sm leading-[normal]">
                 {links.map(({ label, href }) => (
                   <li key={label}>
                     <a
@@ -69,7 +69,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-border flex flex-wrap justify-between gap-3 text-[13px] text-muted-foreground">
+        <div className="mt-14 pt-6 border-t border-border flex flex-wrap justify-between gap-3 text-[13px] leading-[normal] text-muted-foreground">
           <span>© 2026 Nudge AI. All rights reserved.</span>
           <span>Made for teams who talk in Slack.</span>
         </div>

@@ -16,11 +16,11 @@ Live URL: https://nudge-ai-lac.vercel.app
 
 | # | Section | id | Component | Status | Notes |
 |---|---|---|---|---|---|
-| 1 | Hero | `top` | `Hero` | 🔄 | |
-| 2 | Customers | `customers` | `Customers` | 🔄 | |
-| 3 | Features | `features` | `Features` | 🔄 | |
-| 4 | Pricing | `pricing` | `Pricing` | 🔄 | |
-| 5 | Waitlist | `waitlist` | `Waitlist` | 🔄 | |
+| 1 | Hero | `top` | `Hero` | ✅ | accepted exceptions only (see Decisions); page height at 1440 is +7px vs design (1–3px drifts, not chased) |
+| 2 | Customers | `customers` | `Customers` | ✅ | |
+| 3 | Features | `features` | `Features` | ✅ | 12–13px eyebrow accepted; card size matches design (208px at 1440) |
+| 4 | Pricing | `pricing` | `Pricing` | ✅ | 12–13px badge/eyebrow accepted; card size matches design (396px at 1440) |
+| 5 | Waitlist | `waitlist` | `Waitlist` | ✅ | |
 
 Status: ⬜ not started · 🔄 in progress · ✅ done (layout rules OK at 360–2560 + lint/typecheck + committed)
 
@@ -71,6 +71,10 @@ next/image · next/font · Metadata API + sitemap + robots · Vercel · pnpm.
      Reviewers and agents read this and must not report these as problems. -->
 - 2026-11-09: portfolio project — customer logos, pricing and product copy are samples, not real claims.
 - 2026-11-11: portfolio project — links to non-existent pages (Changelog, Integrations, About, Blog, Careers, Contact, Privacy, Terms, Security) are `href="#"` placeholders, not broken links; the Hero beta pill points to `#waitlist`.
+- 2026-11-11: Waitlist footnote differs from the design on purpose (there is no mailing list, so "Unsubscribe anytime" would be false).
+- 2026-11-11: 12–13px text in badges (Beta, Most popular), eyebrow labels and the Inbox mockup is kept as in the design; section-check's "text < 14px" there is expected. The beta pill text is `text-sm` (14px).
+- 2026-11-11: the Beta pill tap target is extended to 44px with an `::after` hit area; section-check measures the box only, so it still reports 36px on mobile.
+- 2026-11-11: radii use the default Tailwind scale (md 6 / lg 8 / xl 12 / 2xl 16, as in the design); the shadcn `--radius-*` overrides and `--radius` were removed from `globals.css`. Design text with `line-height: normal` uses `leading-[normal]`.
 - 2026-11-09: waitlist sends from onboarding@resend.dev (Resend test sender: delivers only to the Resend account owner's email); without env vars the form returns 503 by design.
 
 ## Definition of Done

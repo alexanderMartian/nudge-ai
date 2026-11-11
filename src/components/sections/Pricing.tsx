@@ -41,14 +41,14 @@ export default function Pricing() {
           <Reveal index={0} className="flex">
             <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-primary/55 hover:shadow-card-hover">
               <div>
-                <h3 className="text-base font-semibold">Free</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">For trying Nudge on your own.</p>
+                <h3 className="text-base font-semibold leading-[normal]">Free</h3>
+                <p className="mt-1.5 text-sm leading-[normal] text-muted-foreground">For trying Nudge on your own.</p>
               </div>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-[44px] font-bold tracking-[-0.03em]">$0</span>
-                <span className="text-sm text-muted-foreground">forever</span>
+                <span className="text-[44px] font-bold leading-[normal] tracking-[-0.03em]">$0</span>
+                <span className="text-sm leading-[normal] text-muted-foreground">forever</span>
               </div>
-              <ul className="flex flex-col gap-3 text-sm text-dim flex-1">
+              <ul className="flex flex-col gap-3 text-sm leading-[normal] text-dim flex-1">
                 {["1 Slack workspace", "Up to 3 channels", "50 extracted tasks a month", "Morning digest"].map((item) => (
                   <li key={item} className="flex gap-[10px] items-center">
                     <CheckIcon />
@@ -58,7 +58,7 @@ export default function Pricing() {
               </ul>
               <Link
                 href="#waitlist"
-                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
+                className="flex items-center justify-center h-12 rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
               >
                 Get started
               </Link>
@@ -70,18 +70,18 @@ export default function Pricing() {
             <div className="flex-1 relative p-8 border border-primary rounded-2xl bg-surface-featured flex flex-col gap-6 shadow-featured">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-base font-semibold">Pro</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">For people who live in Slack.</p>
+                  <h3 className="text-base font-semibold leading-[normal]">Pro</h3>
+                  <p className="mt-1.5 text-sm leading-[normal] text-muted-foreground">For people who live in Slack.</p>
                 </div>
-                <span className="px-[10px] py-1 rounded-full bg-primary/20 text-accent-lighter text-[12px] font-semibold whitespace-nowrap">
+                <span className="px-[10px] py-1 rounded-full bg-primary/20 text-accent-lighter text-[12px] font-semibold leading-[normal] whitespace-nowrap">
                   Most popular
                 </span>
               </div>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-[44px] font-bold tracking-[-0.03em]">$12</span>
-                <span className="text-sm text-muted-foreground">per user / month</span>
+                <span className="text-[44px] font-bold leading-[normal] tracking-[-0.03em]">$12</span>
+                <span className="text-sm leading-[normal] text-muted-foreground">per user / month</span>
               </div>
-              <ul className="flex flex-col gap-3 text-sm text-dim flex-1">
+              <ul className="flex flex-col gap-3 text-sm leading-[normal] text-dim flex-1">
                 {[
                   "Unlimited channels and DMs",
                   "Unlimited extracted tasks",
@@ -107,14 +107,14 @@ export default function Pricing() {
           <Reveal index={2} className="flex">
             <div className="flex-1 p-8 border border-border rounded-2xl bg-card flex flex-col gap-6 transition-[border-color,box-shadow] duration-(--motion-base) ease-standard hover:border-primary/55 hover:shadow-card-hover">
               <div>
-                <h3 className="text-base font-semibold">Team</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">For teams that ship together.</p>
+                <h3 className="text-base font-semibold leading-[normal]">Team</h3>
+                <p className="mt-1.5 text-sm leading-[normal] text-muted-foreground">For teams that ship together.</p>
               </div>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-[44px] font-bold tracking-[-0.03em]">$24</span>
-                <span className="text-sm text-muted-foreground">per user / month</span>
+                <span className="text-[44px] font-bold leading-[normal] tracking-[-0.03em]">$24</span>
+                <span className="text-sm leading-[normal] text-muted-foreground">per user / month</span>
               </div>
-              <ul className="flex flex-col gap-3 text-sm text-dim flex-1">
+              <ul className="flex flex-col gap-3 text-sm leading-[normal] text-dim flex-1">
                 {[
                   "Everything in Pro",
                   "Shared team inbox",
@@ -129,7 +129,7 @@ export default function Pricing() {
               </ul>
               <Link
                 href="#waitlist"
-                className="flex items-center justify-center h-[46px] rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
+                className="flex items-center justify-center h-12 rounded-[10px] border border-border bg-surface-elevated text-foreground text-sm font-semibold transition-colors duration-(--motion-fast) ease-standard hover:border-border-hover hover:bg-surface-hover"
               >
                 Contact sales
               </Link>

@@ -14,7 +14,7 @@ export default function Hero() {
         <div>
           <Link
             href="#waitlist"
-            className="inline-flex items-center gap-2 border border-border rounded-full bg-surface text-[13px] text-subtle"
+            className="relative inline-flex items-center gap-2 border border-border rounded-full bg-surface text-sm text-subtle transition-colors hover:border-border-hover hover:bg-surface-hover after:absolute after:inset-x-0 after:-inset-y-1 after:content-['']"
             style={{ padding: "6px 12px 6px 6px" }}
           >
             <span className="px-2 py-0.5 rounded-full bg-primary/18 text-accent-lighter font-semibold text-[12px]">
@@ -91,7 +91,7 @@ export default function Hero() {
           className="mt-[72px] w-full max-w-[1080px] border border-border-mockup rounded-2xl bg-surface-deep overflow-hidden text-left shadow-mockup"
         >
           {/* Mockup chrome */}
-          <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border bg-surface">
+          <div className="flex items-center justify-between gap-3 px-4 py-3 leading-[normal] border-b border-border bg-surface">
             <div className="flex items-center gap-[10px] min-w-0">
               <span className="w-5 h-5 shrink-0 rounded-md bg-primary text-primary-foreground inline-flex items-center justify-center">
                 <svg
@@ -135,7 +135,7 @@ export default function Hero() {
           <div className="grid md:grid-cols-2">
             {/* Left: Slack messages */}
             <div className="p-5 border-r border-border flex flex-col gap-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between leading-[normal]">
                 <span className="text-[12px] font-semibold tracking-[.06em] uppercase text-subtle">
                   From Slack
                 </span>
@@ -170,7 +170,7 @@ export default function Hero() {
 
             {/* Right: Extracted tasks */}
             <div className="p-5 flex flex-col gap-3 bg-mockup-panel">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between leading-[normal]">
                 <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold tracking-[.06em] uppercase text-accent-lighter">
                   <svg
                     width="13"
@@ -193,12 +193,12 @@ export default function Hero() {
               {/* Highlighted task */}
               <div className="p-[14px] border border-primary/50 rounded-xl bg-surface flex flex-col gap-[10px] shadow-note">
                 <div className="flex items-start gap-[10px]">
-                  <span className="w-[18px] h-[18px] shrink-0 mt-px border border-checkbox-border rounded-md" />
+                  <span className="w-[18px] h-[18px] shrink-0 mt-px border-[1.5px] border-checkbox-border rounded-md" />
                   <span className="text-sm font-medium leading-[1.4]">
                     Send updated pricing deck to legal
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-1.5 pl-7 text-[12px]">
+                <div className="flex flex-wrap gap-1.5 pl-7 text-[12px] leading-[normal]">
                   <span className="px-2 py-[3px] rounded-md bg-tag-bg text-dim">@Sam</span>
                   <span className="px-2 py-[3px] rounded-md bg-warn/14 text-warn-text">Due Thu</span>
                   <span className="px-2 py-[3px] rounded-md bg-tag-bg text-subtle">#launch-q4</span>
@@ -250,7 +250,7 @@ function MockMessage({
         {initials}
       </span>
       <div className="min-w-0">
-        <div className="flex flex-wrap items-baseline gap-1.5 text-[13px]">
+        <div className="flex flex-wrap items-baseline gap-1.5 text-[13px] leading-[normal]">
           <strong className="font-semibold">{name}</strong>
           <span className="text-subtle text-[12px]">{channel}</span>
         </div>
@@ -278,10 +278,10 @@ function MockTask({
   return (
     <div className="p-[14px] border border-border rounded-xl bg-surface flex flex-col gap-[10px]">
       <div className="flex items-start gap-[10px]">
-        <span className="w-[18px] h-[18px] shrink-0 mt-px border border-checkbox-border rounded-md" />
+        <span className="w-[18px] h-[18px] shrink-0 mt-px border-[1.5px] border-checkbox-border rounded-md" />
         <span className="text-sm font-medium leading-[1.4]">{label}</span>
       </div>
-      <div className="flex flex-wrap gap-1.5 pl-7 text-[12px]">
+      <div className="flex flex-wrap gap-1.5 pl-7 text-[12px] leading-[normal]">
         {tags.map((tag) => (
           <span
             key={tag.text}

@@ -57,13 +57,6 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @theme {
@@ -117,7 +110,6 @@
   --border: #1E1E2E;
   --input: #111118;
   --ring: #7C3AED;
-  --radius: 0.625rem;
 
   /* Extended Nudge AI tokens */
   --accent-light: #A78BFA;

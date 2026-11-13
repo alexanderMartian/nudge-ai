@@ -23,6 +23,7 @@ My own design, created in Claude Design (claude.ai), inspired by modern AI/SaaS 
 - First screen without animation (fast LCP); CSS reveal-on-scroll with one IntersectionObserver; respects `prefers-reduced-motion`; no animation library
 - Accessibility: semantic sections, keyboard-friendly mobile menu (`aria-expanded`, Escape), 44 px tap targets, WCAG AA contrast
 - SEO: Metadata API, Open Graph image, icons, sitemap, robots, JSON-LD
+- Vercel Web Analytics (cookieless)
 - Security headers (CSP `frame-ancestors`, `nosniff`, Referrer-Policy, Permissions-Policy, COOP), no `X-Powered-By`
 
 ## Stack
